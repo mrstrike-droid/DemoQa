@@ -12,7 +12,7 @@ def login():
     driver.find_element(By.NAME, "password").click()
     driver.find_element(By.NAME, "password").send_keys("<PASSWORD>")
     driver.find_element(By.NAME, "submit").click()
-    driver.implicitly_wait(5)
+
 
 if __name__ == "__main__":
     login()
