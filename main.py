@@ -21,12 +21,11 @@ class DemoQA:
         self._driver.maximize_window()
 
     def text_box(self):
-        time.sleep(1)
         first_clickable_object = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
         first_clickable_object.click()
         time.sleep(1)
-        text_box = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'text')]")))
+        text_box = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Text Box')]")))
         text_box.click()
         time.sleep(1)
         full_name = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'userName')]")))
@@ -47,8 +46,27 @@ class DemoQA:
         result = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@id, 'output')]")))
         logger.info(result.text)
 
+    def check_box(self):
+        check_box = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Check Box')]")))
+        check_box.click()
+        time.sleep(1)
+        button_collapse_1 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div/ol/li/span/button")))
+        button_collapse_1.click()
+        time.sleep(1)
+        button_collapse_2 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div/ol/li/ol/li[1]/span/button")))
+        button_collapse_2.click()
+        time.sleep(1)
+
+
+
+
 
 if __name__ == "__main__":
     test1 = DemoQA()
     test1.open_page()
     test1.text_box()
+    test1.check_box()
+
