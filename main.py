@@ -59,7 +59,51 @@ class DemoQA:
             EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div/ol/li/ol/li[1]/span/button")))
         button_collapse_2.click()
         time.sleep(1)
-
+        button_collapse_3 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div/ol/li/ol/li[2]/span/button")))
+        button_collapse_3.click()
+        time.sleep(1)
+        button_collapse_4 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div/ol/li/ol/li[2]/ol/li[1]/span/button")))
+        button_collapse_4.click()
+        time.sleep(1)
+        button_collapse_5 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div/ol/li/ol/li[2]/ol/li[2]/span/button")))
+        button_collapse_5.click()
+        time.sleep(1)
+        button_collapse_6 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[1]/ol/li/ol/li[3]/span/button")))
+        button_collapse_6.click()
+        time.sleep(1)
+        button_click_1 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[1]/ol/li/ol/li[3]/span/label/span[1]")))
+        button_click_1.click()
+        time.sleep(1)
+        result = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "//div[contains(@id, 'result')]")))
+        logger.info(result.text)
+        button_click_2 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[1]/ol/li/ol/li[2]/ol/li[2]/ol/li[4]/span/label/span[1]")))
+        button_click_2.click()
+        time.sleep(1)
+        logger.info(result.text)
+        button_click_1.click()
+        time.sleep(1)
+        logger.info(result.text)
+        button_click_3 = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located(
+                (By.XPATH,
+                 "/html/body/div[2]/div/div/div/div[2]/div[2]/div[1]/ol/li/span/label/span[1]")))
+        button_click_3.click()
+        time.sleep(1)
+        logger.info(result.text)
 
 
 
