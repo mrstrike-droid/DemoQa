@@ -1,7 +1,9 @@
 from datetime import time
 import logging
 import selenium
+from pyasn1_modules.rfc3279 import primeCurve
 from selenium import webdriver
+from selenium.common import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -45,8 +47,13 @@ class DemoQA:
         time.sleep(1)
         result = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@id, 'output')]")))
         logger.info(result.text)
+        self._driver.close()
 
     def check_box(self):
+        first_clickable_object = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
+        first_clickable_object.click()
+        time.sleep(1)
         check_box = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Check Box')]")))
         check_box.click()
@@ -104,13 +111,46 @@ class DemoQA:
         button_click_3.click()
         time.sleep(1)
         logger.info(result.text)
+        self._driver.close()
 
-
-
+    def radio_button(self):
+        first_clickable_object = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
+        first_clickable_object.click()
+        time.sleep(1)
+        radio_button = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Radio Button')]")))
+        radio_button.click()
+        time.sleep(1)
+        yes = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//label[contains(@for, 'yesRadio')]")))
+        yes.click()
+        time.sleep(1)
+        text = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//span[contains(@class, 'text-success')]")))
+        logger.info(text.text)
+        impressive = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//label[contains(@for, 'impressiveRadio')]")))
+        impressive.click()
+        time.sleep(1)
+        logger.info(text.text)
+        no = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//label[contains(@for, 'noRadio')]")))
+        if "disabled" in no.get_attribute("class"):
+            logger.error('Button is disabled')
+        else:
+            no.click()
+        self._driver.close()
 
 if __name__ == "__main__":
     test1 = DemoQA()
+    #test1.open_page()
+    #test1.text_box()
+    #time.sleep(1)
+    #test1.open_page()
+    #test1.check_box()
+    #time.sleep(1)
     test1.open_page()
-    test1.text_box()
-    test1.check_box()
+    test1.radio_button()
+    time.sleep(1)
 
