@@ -1,7 +1,6 @@
 from datetime import time
 import logging
 import selenium
-from pyasn1_modules.rfc3279 import primeCurve
 from selenium import webdriver
 from selenium.common import NoSuchElementException, TimeoutException
 from selenium.webdriver.common.by import By
@@ -47,7 +46,8 @@ class DemoQA:
         time.sleep(1)
         result = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[contains(@id, 'output')]")))
         logger.info(result.text)
-        self._driver.close()
+        self._driver.switch_to.new_window('tab')
+
 
     def check_box(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
@@ -111,7 +111,7 @@ class DemoQA:
         button_click_3.click()
         time.sleep(1)
         logger.info(result.text)
-        self._driver.close()
+        self._driver.switch_to.new_window('tab')
 
     def radio_button(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
@@ -140,7 +140,11 @@ class DemoQA:
             logger.error('Button is disabled')
         else:
             no.click()
-        self._driver.close()
+        self._driver.switch_to.new_window('tab')
+
+    def web_tables(self):
+        first_clickable_object = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
+        first_clickable_object.click()
 
 if __name__ == "__main__":
     test1 = DemoQA()
@@ -150,7 +154,10 @@ if __name__ == "__main__":
     #test1.open_page()
     #test1.check_box()
     #time.sleep(1)
+    #test1.open_page()
+    #test1.radio_button()
+    #time.sleep(1)
     test1.open_page()
-    test1.radio_button()
+    test1.web_tables()
     time.sleep(1)
 
