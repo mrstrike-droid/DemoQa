@@ -143,8 +143,29 @@ class DemoQA:
         self._driver.switch_to.new_window('tab')
 
     def web_tables(self):
-        first_clickable_object = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
+        first_clickable_object = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
         first_clickable_object.click()
+        time.sleep(1)
+        web_tables = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
+        web_tables.click()
+        time.sleep(1)
+        search = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'searchBox')]")))
+        search.click()
+        search.send_keys("Vega")
+        time.sleep(1)
+        first_name = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[1]")))
+        logger.info(first_name.text)
+        last_name = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[2]")))
+        logger.info(last_name.text)
+        age = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[3]")))
+        logger.info(age.text)
+        email = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[4]")))
+        logger.info(email.text)
+        salary = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[5]")))
+        logger.info(salary.text)
+        department = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[6]")))
+        logger.info(department.text)
 
 if __name__ == "__main__":
     test1 = DemoQA()
