@@ -23,7 +23,7 @@ class DemoQA:
 
     def text_box(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
+            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
         first_clickable_object.click()
         time.sleep(1)
         text_box = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Text Box')]")))
@@ -51,7 +51,7 @@ class DemoQA:
 
     def check_box(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
+            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
         first_clickable_object.click()
         time.sleep(1)
         check_box = WebDriverWait(self._driver, 10).until(
@@ -115,7 +115,7 @@ class DemoQA:
 
     def radio_button(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
+            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
         first_clickable_object.click()
         time.sleep(1)
         radio_button = WebDriverWait(self._driver, 10).until(
@@ -142,9 +142,9 @@ class DemoQA:
             no.click()
         self._driver.switch_to.new_window('tab')
 
-    def web_tables(self):
+    def web_tables_check_vega(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "//*[@id='app']/div/div/div[2]/div/div[1]")))
+            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
         first_clickable_object.click()
         time.sleep(1)
         web_tables = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
@@ -167,6 +167,72 @@ class DemoQA:
         department = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[6]")))
         logger.info(department.text)
 
+    def web_tables_create_new_employee(self):
+        first_clickable_object = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
+        first_clickable_object.click()
+        time.sleep(1)
+        web_tables = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
+        web_tables.click()
+        time.sleep(1)
+        add = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//button[contains(@id, 'addNewRecordButton')]")))
+        add.click()
+        time.sleep(1)
+        first_name = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'firstName')]")))
+        first_name.click()
+        first_name.send_keys("Alex")
+        last_name = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'lastName')]")))
+        last_name.click()
+        last_name.send_keys("PC")
+        email = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'userEmail')]")))
+        email.click()
+        email.send_keys("qweewq@gmail.com")
+        age = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'age')]")))
+        age.click()
+        age.send_keys("42")
+        salary = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'salary')]")))
+        salary.click()
+        salary.send_keys("20000")
+        department = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'department')]")))
+        department.click()
+        department.send_keys("IT")
+        submit = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//button[contains(@id, 'submit')]")))
+        submit.click()
+        time.sleep(1)
+
+        search = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'searchBox')]")))
+        search.click()
+        search.send_keys("PC")
+        time.sleep(1)
+        first_name = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[1]")))
+        logger.info(first_name.text)
+        last_name = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[2]")))
+        logger.info(last_name.text)
+        age = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[3]")))
+        logger.info(age.text)
+        email = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[4]")))
+        logger.info(email.text)
+        salary = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[5]")))
+        logger.info(salary.text)
+        department = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[6]")))
+        logger.info(department.text)
+
 if __name__ == "__main__":
     test1 = DemoQA()
     #test1.open_page()
@@ -178,7 +244,11 @@ if __name__ == "__main__":
     #test1.open_page()
     #test1.radio_button()
     #time.sleep(1)
+    #test1.open_page()
+    #test1.web_tables_check_vega()
+    #time.sleep(1)
     test1.open_page()
-    test1.web_tables()
+    test1.web_tables_create_new_employee()
     time.sleep(1)
+
 
