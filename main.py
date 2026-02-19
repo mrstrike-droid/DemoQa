@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import time
+import random
 
 logger = logging.getLogger("log_event")
 logging.basicConfig(filename='log.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -166,6 +167,7 @@ class DemoQA:
         logger.info(salary.text)
         department = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "/html/body/div[2]/div/div/div/div[2]/div[2]/div[3]/div[1]/div[2]/div[1]/div/div[6]")))
         logger.info(department.text)
+        self._driver.switch_to.new_window('tab')
 
     def web_tables_create_new_employee(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
@@ -232,6 +234,67 @@ class DemoQA:
         department = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located(
             (By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/table/tbody/tr/td[6]")))
         logger.info(department.text)
+        self._driver.switch_to.new_window('tab')
+
+    def create_ten_web_tables_account(self):
+        count = 0
+        first_name_list = ['Alex', 'Rebbecca', 'John', 'Sam', 'Jane', 'Anna', 'Tom', 'Jerry', 'Margo', 'Terry', 'Goward', 'Andrzey', 'Yulia', 'Ezra', 'Andy']
+        last_name_list = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson']
+
+
+        first_clickable_object = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
+        first_clickable_object.click()
+        time.sleep(1)
+        web_tables = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
+        web_tables.click()
+        time.sleep(1)
+        while count < 15:
+            add = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//button[contains(@id, 'addNewRecordButton')]")))
+            add.click()
+            time.sleep(1)
+            first_name = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'firstName')]")))
+            first_name.click()
+            first_name.send_keys(random.choice(first_name_list))
+            last_name = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'lastName')]")))
+            last_name.click()
+            last_name.send_keys(random.choice(last_name_list))
+            email = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'userEmail')]")))
+            email.click()
+            email.send_keys("qweewq@gmail.com")
+            age = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'age')]")))
+            age.click()
+            random_age = str(random.randint(18, 65))
+            age.send_keys(random_age)
+            salary = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'salary')]")))
+            salary.click()
+            random_salary = str(random.randint(1000, 9999))
+            salary.send_keys(random_salary)
+            department = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//input[contains(@id, 'department')]")))
+            department.click()
+            department.send_keys("IT")
+            submit = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//button[contains(@id, 'submit')]")))
+            submit.click()
+            time.sleep(1)
+            count = count + 1
+        time.sleep(1)
+        select_option = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div/div[2]/div[2]/div[2]/div[3]/div/div[3]/select")))
+        select_option.click()
+        time.sleep(1)
+        option = WebDriverWait(self._driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//option[contains(@value, '20')]")))
+        option.click()
+        time.sleep(10)
 
 if __name__ == "__main__":
     test1 = DemoQA()
@@ -247,8 +310,12 @@ if __name__ == "__main__":
     #test1.open_page()
     #test1.web_tables_check_vega()
     #time.sleep(1)
+    #test1.open_page()
+    #test1.web_tables_create_new_employee()
+    #time.sleep(1)
     test1.open_page()
-    test1.web_tables_create_new_employee()
+    test1.create_ten_web_tables_account()
     time.sleep(1)
+
 
 
