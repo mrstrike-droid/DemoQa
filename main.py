@@ -21,12 +21,12 @@ class DemoQA:
     def open_page(self):
         self._driver.get(self._url)
         self._driver.maximize_window()
-
-    def text_box(self):
         first_clickable_object = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
         first_clickable_object.click()
         time.sleep(1)
+
+    def text_box(self):
         text_box = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Text Box')]")))
         text_box.click()
         time.sleep(1)
@@ -51,10 +51,6 @@ class DemoQA:
 
 
     def check_box(self):
-        first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
-        first_clickable_object.click()
-        time.sleep(1)
         check_box = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Check Box')]")))
         check_box.click()
@@ -115,10 +111,6 @@ class DemoQA:
         self._driver.switch_to.new_window('tab')
 
     def radio_button(self):
-        first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
-        first_clickable_object.click()
-        time.sleep(1)
         radio_button = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Radio Button')]")))
         radio_button.click()
@@ -144,10 +136,6 @@ class DemoQA:
         self._driver.switch_to.new_window('tab')
 
     def web_tables_check_vega(self):
-        first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
-        first_clickable_object.click()
-        time.sleep(1)
         web_tables = WebDriverWait(self._driver, 10).until(EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
         web_tables.click()
         time.sleep(1)
@@ -170,10 +158,6 @@ class DemoQA:
         self._driver.switch_to.new_window('tab')
 
     def web_tables_create_new_employee(self):
-        first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
-        first_clickable_object.click()
-        time.sleep(1)
         web_tables = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
         web_tables.click()
@@ -241,11 +225,6 @@ class DemoQA:
         first_name_list = ['Alex', 'Rebbecca', 'John', 'Sam', 'Jane', 'Anna', 'Tom', 'Jerry', 'Margo', 'Terry', 'Goward', 'Andrzey', 'Yulia', 'Ezra', 'Andy']
         last_name_list = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Garcia', 'Miller', 'Davis', 'Rodriguez', 'Martinez', 'Hernandez', 'Lopez', 'Gonzalez', 'Wilson']
 
-
-        first_clickable_object = WebDriverWait(self._driver, 10).until(
-            EC.presence_of_element_located((By.XPATH, "/html/body/div/div[1]/div/div[2]/div/a[1]/div/div/div[3]")))
-        first_clickable_object.click()
-        time.sleep(1)
         web_tables = WebDriverWait(self._driver, 10).until(
             EC.presence_of_element_located((By.XPATH, "//span[contains(text(), 'Web Tables')]")))
         web_tables.click()
